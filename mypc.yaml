@@ -1,0 +1,48 @@
+---
+- name: Config inicial do pc
+  hosts: localhost
+  become: yes
+  tasks:
+
+   - name: apt update
+     apt:
+           update_cache: yes 
+
+   - name: apt upgrade
+     apt:
+           upgrade: yes 
+
+
+   - name: instalar pacotes
+     package:
+       state: present
+       name:
+         - git
+         - kolourpaint
+         - pdfarranger
+         - vim
+         - cheese
+         - rapid-photo-downloader
+         - shotwell
+         - htop
+
+   - name: instalar snap 
+     snap:
+       state: present 
+       name: 
+         - discord
+         - gimp
+         - inkscape
+         - qr-code-generator-desktop
+         - spotify
+         - vlc
+         - libreoffice
+         - remmina
+
+   - name: instalar slack|vscode
+     snap:
+       state: present 
+       classic: yes
+       name: 
+         - slack
+         - vscode
