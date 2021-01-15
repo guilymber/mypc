@@ -17,7 +17,6 @@
      package:
        state: present
        name:
-         - git
          - kolourpaint
          - pdfarranger
          - vim
