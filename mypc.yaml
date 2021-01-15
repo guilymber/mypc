@@ -25,7 +25,6 @@
          - rapid-photo-downloader
          - shotwell
          - htop
-         - curl
 
    - name: install snap packages
      snap:
@@ -47,6 +46,24 @@
        name: 
          - slack
          - vscode
+
+   - name: add virtualbox gpg apt key
+     apt_key:
+            url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+            url: https://www.virtualbox.org/download/oracle_vbox.asc
+            state: present
+
+   - name: add virtualbox repository
+     apt_repository:
+            repo: deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib
+            state: present
+            update_cache: yes
+
+   - name: install virtual box
+     package:
+       state: present
+       name:
+         - virtualbox
 
    - name: meet the prerequisites docker 
      package:
