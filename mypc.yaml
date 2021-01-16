@@ -49,6 +49,10 @@
    - name: add virtualbox gpg apt key
      apt_key:
             url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+            state: present
+
+   - name: add virtualbox gpg apt key
+     apt_key:
             url: https://www.virtualbox.org/download/oracle_vbox.asc
             state: present
 
@@ -62,7 +66,7 @@
      package:
        state: present
        name:
-         - virtualbox
+         - virtualbox-6.1
 
    - name: meet the prerequisites docker 
      package:
