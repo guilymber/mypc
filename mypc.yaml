@@ -58,7 +58,7 @@
 
    - name: add virtualbox repository
      apt_repository:
-            repo: deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib
+            repo: deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib
             state: present
             update_cache: yes
 
@@ -67,6 +67,12 @@
        state: present
        name:
          - virtualbox-6.1
+
+   - name: add groups your_user|vboxusers
+     user:
+       name: guilherme 
+       groups: vboxusers 
+       append: yes 
 
    - name: meet the prerequisites docker 
      package:
@@ -85,7 +91,7 @@
 
    - name: add docker repository
      apt_repository:
-            repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+            repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
             state: present
             update_cache: yes
 
