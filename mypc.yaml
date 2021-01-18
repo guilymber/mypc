@@ -1,5 +1,5 @@
 ---
-- name: Config inicial do pc
+- name: Config pc mypc
   hosts: localhost
   become: yes
   tasks:
@@ -46,13 +46,26 @@
          - slack
          - vscode
 
-   - name: add virtualbox gpg apt key
+   - name: add chrome gpg-key
      apt_key:
-            url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+            url: https://dl.google.com/linux/linux_signing_key.pub
             state: present
 
-   - name: add virtualbox gpg apt key
+   - name: add chrome repository
+     apt_repository:
+            repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+            state: present
+            update_cache: yes
+
+   - name: install crhome
+     package:
+       state: present
+       name:
+         - google-chrome-stable
+
+   - name: add virtualbox gpg-key
      apt_key:
+            url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
             url: https://www.virtualbox.org/download/oracle_vbox.asc
             state: present
 
@@ -84,7 +97,7 @@
          - gnupg-agent
          - software-properties-common
 
-   - name: add docker gpg apt key
+   - name: add docker gpg-key
      apt_key:
             url: https://download.docker.com/linux/ubuntu/gpg
             state: present
