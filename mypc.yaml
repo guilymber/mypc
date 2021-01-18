@@ -10,7 +10,7 @@
 
    - name: apt upgrade
      apt:
-           upgrade: yes 
+           upgrade: 'True' 
 
 
    - name: install apt packages
@@ -24,6 +24,8 @@
          - rapid-photo-downloader
          - shotwell
          - htop
+         - blastem
+         - zsnes
 
    - name: install snap packages
      snap:
